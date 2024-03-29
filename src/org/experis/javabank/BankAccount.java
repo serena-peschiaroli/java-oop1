@@ -4,15 +4,21 @@ import java.math.BigDecimal;
 import java.util.Random;
 
 public class BankAccount {
+
+    //variabili
     private String iban;
     private String clientName;
     private BigDecimal balance;
 
-    public BankAccount(String iban, String clientName) {
+    //costruttore
+
+    public BankAccount(String clientName) {
         this.clientName = clientName;
         this.iban = generateIban();
         this.balance = BigDecimal.ZERO;
     }
+
+    //metodi
 
     //generare iban
     public String generateIban(){
@@ -22,7 +28,7 @@ public class BankAccount {
 
     //prelevare denaro
 
-    public void withdrawal(BigDecimal cash, BigDecimal balance){
+    public void withdrawal(BigDecimal cash){
         // Controlla se cash è maggiore di 0 e non supera il saldo
         if (cash.compareTo(BigDecimal.ZERO) > 0 && cash.compareTo(balance) >0 ){
             balance = balance.subtract(cash);
@@ -34,6 +40,20 @@ public class BankAccount {
         }
     }
 
+    //depositare denaro
+
+    public void deposit(BigDecimal amount){
+        //se amount è maggiore di zero, procedi con l'operazione
+        if(amount.compareTo(BigDecimal.ZERO) > 0){
+            balance = balance.add(amount);
+            System.out.println("deposit successful. New balance: " + balance);
+        }else {
+            System.out.println("invalid amount");
+        }
+
+    }
+
+    //getters;
     public String getIban() {
         return iban;
     }
