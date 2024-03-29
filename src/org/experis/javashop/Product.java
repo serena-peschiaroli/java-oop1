@@ -15,7 +15,7 @@ public class Product {
     private int quantity;
     private boolean isVisible;
     //costruttore
-    public Product(String name, String description, BigDecimal price, BigDecimal vat, int quantity, boolean isVisible) {
+    public Product(String name, String description, BigDecimal price, BigDecimal vat, int quantity) {
         this.id = generateRandomId();
         this.name = name;
         this.description = description;
