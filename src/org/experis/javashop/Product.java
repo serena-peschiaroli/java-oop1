@@ -1,4 +1,4 @@
-package org.experis.javabank;
+package org.experis.javashop;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
