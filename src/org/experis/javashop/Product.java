@@ -15,14 +15,14 @@ public class Product {
     private int quantity;
     private boolean isVisible;
     //costruttore
-    public Product(int id, String name, String description, BigDecimal price, BigDecimal vat, int quantity, boolean isVisible) {
-        this.id = id;
+    public Product(String name, String description, BigDecimal price, BigDecimal vat, int quantity, boolean isVisible) {
+        this.id = generateRandomId();
         this.name = name;
         this.description = description;
         this.price = price;
         this.vat = vat;
         this.quantity = quantity;
-        this.isVisible = isVisible;
+        this.isVisible = quantity > 0;
     }
 
     //metodi
@@ -39,7 +39,7 @@ public class Product {
 
     public BigDecimal getTotalPrice(){
         //dividere x 100 ed aggiungere 1
-        BigDecimal vatRate = this.vat.divide(BigDecimal.valueOf(100), RoundingMode.HALF_UP).add(BigDecimal.ONE);
+        BigDecimal vatRate = this.vat.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP).add(BigDecimal.ONE);
         //ritornare price * 1.22; NB:   set Scale x arrotondare il risultato a due cifre decimali, RM HA ->arrotondato al numero intero superiore più vicino
         return this.price.multiply(vatRate).setScale(2, RoundingMode.HALF_UP);
 
@@ -51,11 +51,30 @@ public class Product {
         return String.format("%08d", this.id) + "-" + this.name;
     }
 
-    //cambia visibilità se la quantità è inferiore a 0
+    //getters per accedere i valori delle istanze
 
-    public void toggleFlag() {
-
-        this.isVisible = this.quantity > 0;
+    //id
+    public int getId() {
+        return this.id;
+    }
+    //name
+    public String getName(){
+        return this.name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public boolean getIsVisible() {
+        return this.isVisible;
+    }
 }
