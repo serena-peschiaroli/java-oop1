@@ -30,7 +30,7 @@ public class BankAccount {
 
     public void withdrawal(BigDecimal cash){
         // Controlla se cash è maggiore di 0 e non supera il saldo
-        if (cash.compareTo(BigDecimal.ZERO) > 0 && cash.compareTo(balance) >0 ){
+        if (cash.compareTo(BigDecimal.ZERO) > 0 && cash.compareTo(balance) <= 0 ){
             balance = balance.subtract(cash);
             System.out.println("Withdrawal successful. current balance: " + balance);
 

@@ -27,12 +27,14 @@ public class Bank {
             switch (userChoice){
                 case 1:
                     System.out.println("enter amout to deposit");
-                    account.deposit(scanner.nextBigDecimal());
+                    //per evitare exception fra scanner nextline e scanner nextbigdecimal
+                    BigDecimal depositAmount = new BigDecimal(scanner.nextLine());
+                    account.deposit(depositAmount);
                     break;
                 case 2:
                     System.out.println("enter amount to withdraw: ");
-                    account.withdrawal(scanner.nextBigDecimal());
-                    scanner.nextLine();
+                    BigDecimal withdrawalAmount = new BigDecimal(scanner.nextLine());
+                    account.withdrawal(withdrawalAmount);
                     break;
                 case 3:
                     System.out.println("current balance: " + account.getBalance());
@@ -41,6 +43,7 @@ public class Bank {
                     System.out.println("Your info: " + account.getInfos());
                     break;
                 case 5:
+                    System.out.println("Thank you. Good bye");
                     exit = true;
                     break;
                 default:
